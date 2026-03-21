@@ -6,65 +6,57 @@ export function Operators() {
   const categories = [
     { 
       t: "Arithmetic", 
-      d: "Perform mathematical operations.", 
-      e: "give(10 + 5)\ngive(20 - 3)\ngive(5 * 4)\ngive(10 / 2)",
-      o: "15\n17\n20\n5"
+      d: "Standard mathematical operations on numbers.", 
+      e: "give(10 + 5) #// 15 //#\ngive(10 - 5) #// 5 //#\ngive(10 * 5) #// 50 //#\ngive(10 / 5) #// 2 //#",
     },
     { 
       t: "Comparison", 
-      d: "Compare two values, returning a boolean (true/false).", 
-      e: "give(10 == 10)\ngive(5 != 3)\ngive(10 > 20)\ngive(5 < 8)",
-      o: "true\ntrue\nfalse\ntrue"
+      d: "Compare values and return a logic (BOOL) result.", 
+      e: "give(10 == 10) #// true //#\ngive(10 > 5)  #// true //#\ngive(5 < 3)   #// false //#",
     },
     { 
       t: "Logical", 
       d: "Combine or negate boolean conditions.", 
-      e: "give(true and false)\ngive(true or false)\ngive(not true)",
-      o: "false\ntrue\nfalse"
+      e: "give(true and false) #// false //#\ngive(true or false)  #// true //#\ngive(not true)       #// false //#",
     },
   ];
 
   return (
-    <div className="prose prose-invert max-w-none space-y-12">
-      <section className="space-y-4">
-        <div className="mb-4 inline-flex rounded-2xl bg-purple-500/10 p-4">
-          <Calculator className="size-8 text-purple-400" />
+    <div className="animate-in fade-in duration-700 space-y-12">
+      <header className="space-y-4">
+        <div className="flex items-center gap-3 text-purple-400">
+          <Calculator className="size-6" />
+          <span className="text-sm font-bold tracking-widest uppercase">Fundamentals</span>
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">7. Operators</h1>
-        <p className="text-lg leading-relaxed text-gray-400 max-w-2xl">
-          Operators perform actions on variables and values. THE includes standard 
-          arithmetic, comparison, and logical operators.
+        <h1 className="text-4xl font-bold text-white md:text-5xl">Operators</h1>
+        <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
+          Operators enable you to perform calculations and logic checks on data. THE supports all standard 
+          arithmetic, comparison, and boolean logic operations.
         </p>
-      </section>
+      </header>
 
-      <div className="grid gap-12">
+      <div className="space-y-10">
         {categories.map((cat) => (
-          <section key={cat.t} className="space-y-4 pt-8 border-t border-white/5 first:border-t-0 first:pt-0">
-            <h2 className="text-2xl font-semibold text-white">{cat.t}</h2>
-            <p className="text-gray-400 leading-relaxed max-w-2xl">{cat.d}</p>
+          <section key={cat.t} className="space-y-4 pt-10 border-t border-white/5 first:border-t-0 first:pt-0">
+            <h2 className="text-2xl font-bold text-white tracking-tight">{cat.t} Operators</h2>
+            <p className="text-gray-400 leading-relaxed">{cat.d}</p>
             <CodeBlock filename={cat.t.toLowerCase() + ".the"} code={cat.e} />
-            <div className="rounded-xl border border-white/5 bg-black/30 p-4">
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
-              <pre className="text-green-400 font-mono text-sm m-0 leading-relaxed">{cat.o}</pre>
-            </div>
           </section>
         ))}
       </div>
 
-      <div className="pt-12 border-t border-white/5">
+      <footer className="pt-12 border-t border-white/5">
         <Link 
-          to="/docs/if" 
-          className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-8 transition-all hover:bg-white/10"
+          to="/docs/if"
+          className="group flex flex-col items-end gap-2 text-right"
         >
-          <div>
-            <div className="text-sm text-gray-500 mb-1">Next Step</div>
-            <div className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">
-              If Statement →
-            </div>
-          </div>
-          <ArrowRight className="size-6 text-gray-500 group-hover:text-purple-400 transition-transform group-hover:translate-x-2" />
+          <span className="text-sm text-gray-500 font-medium">Next Step</span>
+          <span className="flex items-center gap-2 text-xl font-bold text-white transition-colors group-hover:text-purple-400">
+            If Statement
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+          </span>
         </Link>
-      </div>
+      </footer>
     </div>
   );
 }

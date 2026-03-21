@@ -4,67 +4,71 @@ import { CodeBlock } from "../../components/CodeBlock";
 
 export function ErrorHandling() {
   return (
-    <div className="prose prose-invert max-w-none space-y-12">
-      <section className="space-y-4">
-        <div className="mb-4 inline-flex rounded-2xl bg-purple-500/10 p-4">
-          <AlertCircle className="size-8 text-purple-400" />
+    <div className="animate-in fade-in duration-700 space-y-12">
+      <header className="space-y-4">
+        <div className="flex items-center gap-3 text-purple-400">
+          <AlertCircle className="size-6" />
+          <span className="text-sm font-bold tracking-widest uppercase">Advanced</span>
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">14. Error Handling</h1>
-        <p className="text-lg leading-relaxed text-gray-400 max-w-2xl">
-          THE Language provides robust tools to handle and propagate errors using try-catch blocks 
-          and specialized keywords.
+        <h1 className="text-4xl font-bold text-white md:text-5xl">Error Handling</h1>
+        <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
+          THE provides professional-grade tools for managing runtime failures. Use structured 
+          try-catch blocks to catch errors, or throw/raise keywords to manage custom exceptions.
         </p>
-      </section>
+      </header>
 
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-white">Try-Catch</h2>
-        <p className="text-gray-400">Handle exceptions without crashing your program.</p>
+      <section className="space-y-6 pt-10 border-t border-white/5">
+        <h2 className="text-2xl font-bold text-white tracking-tight underline underline-offset-8 decoration-purple-500/30">Try-Catch</h2>
+        <p className="text-gray-400 leading-relaxed">
+          Use <code className="text-purple-400 font-mono">try-catch</code> to attempt a block of code and handle any 
+          errors that occur without stopping program execution.
+        </p>
         <CodeBlock 
           filename="try_catch.the"
-          code={`try {\n    a = 5 / 0\n} catch(e) {\n    give("Error: " + e)\n}`}
+          code={`try {\n    result = 10 / 0\n} catch(error) {\n    give("Handled: " + error)\n}`}
         />
         <div className="rounded-xl border border-white/5 bg-black/30 p-4">
           <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
-          <code className="text-green-400 text-sm font-mono">Error: division by zero</code>
+          <code className="text-green-400 font-mono">Handled: division by zero</code>
         </div>
       </section>
 
-      <section className="space-y-6 pt-8 border-t border-white/5">
-        <h2 className="text-2xl font-semibold text-white">Throw</h2>
-        <p className="text-gray-400">Stop execution and return an error message manually.</p>
+      <section className="space-y-6 pt-10 border-t border-white/5">
+        <h2 className="text-2xl font-bold text-white tracking-tight underline underline-offset-8 decoration-purple-500/30">Throw</h2>
+        <p className="text-gray-400 leading-relaxed">
+          The <code className="text-purple-400 font-mono">throw</code> keyword allows you to manually create an error 
+          and stop the current scope of execution with a custom message.
+        </p>
         <CodeBlock 
           filename="throw.the"
-          code={`throw("Access Denied")`}
+          code={`if balance < 0 {\n    throw("Insufficient Funds")\n}`}
         />
-        <div className="rounded-xl border border-white/5 bg-black/30 p-4">
-          <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
-          <code className="text-red-400 text-sm font-mono">Uncaught Error: Access Denied</code>
-        </div>
       </section>
 
-      <section className="space-y-6 pt-8 border-t border-white/5">
-        <h2 className="text-2xl font-semibold text-white">Raise</h2>
-        <p className="text-gray-400">Propagate an existing error object up the call stack.</p>
+      <section className="space-y-6 pt-10 border-t border-white/5">
+        <h2 className="text-2xl font-bold text-white tracking-tight underline underline-offset-8 decoration-purple-500/30">Raise</h2>
+        <p className="text-gray-400 leading-relaxed">
+          The <code className="text-purple-400 font-mono">raise</code> keyword is used to re-trigger an error that was 
+          already caught, typically after performing some logging or cleanup.
+        </p>
         <CodeBlock 
           filename="raise.the"
-          code={`try {\n    #// ... some code //#\n} catch(e) {\n    raise(e)\n}`}
+          code={`try {\n    #// unsafe operation //#\n} catch(e) {\n    give("Logging error...")\n    raise(e)\n}`}
         />
       </section>
 
-      <div className="pt-12 border-t border-white/5">
+      <footer className="pt-12 border-t border-white/5">
         <Link 
-          to="/docs/flow-control" 
-          className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-8 transition-all hover:bg-white/10"
+          to="/docs/flow-control"
+          className="group flex flex-col items-end gap-2 text-right"
         >
-          <div>
-            <div className="text-sm text-gray-500 mb-1">Next Step</div>
-            <div className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">
-              Flow Control →
-            </div>
-          </div>
-          <ArrowRight className="size-6 text-gray-500 group-hover:text-purple-400 transition-transform group-hover:translate-x-2" />
+          <span className="text-sm text-gray-500 font-medium">Next Step</span>
+          <span className="flex items-center gap-2 text-xl font-bold text-white transition-colors group-hover:text-purple-400">
+            Flow Control
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+          </span>
         </Link>
-      </div>
+      </footer>
     </div>
   );
 }

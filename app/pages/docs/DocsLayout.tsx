@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { 
-  Outlet, Link, useLocation 
+  Outlet, Link, useLocation, Navigate
 } from "react-router";
 import { 
   Rocket, Box, Type, LogIn, LogOut, Calculator, 
@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 
-export type DocGroup = "Introduction" | "Fundamentals" | "Logic & Flow" | "Advanced" | "Community";
+export type DocGroup = "INTRODUCTION" | "FUNDAMENTALS" | "CONTROL FLOW" | "ADVANCED";
 
 interface DocNav {
   title: string;
@@ -24,45 +24,39 @@ interface DocNav {
 }
 
 const docNavigation: DocNav[] = [
-  // Introduction
-  { title: "1. Introduction", path: "/docs/introduction", icon: BookOpen, group: "Introduction" },
-  { title: "2. Getting Started", path: "/docs/getting-started", icon: Rocket, group: "Introduction" },
+  // INTRODUCTION
+  { title: "What is THE", path: "/docs/introduction", icon: BookOpen, group: "INTRODUCTION" },
+  { title: "Installation", path: "/docs/getting-started", icon: Rocket, group: "INTRODUCTION" },
   
-  // Fundamentals
-  { title: "3. Variables", path: "/docs/variables", icon: Box, group: "Fundamentals" },
-  { title: "4. Data Types", path: "/docs/data-types", icon: Type, group: "Fundamentals" },
-  { title: "5. Input", path: "/docs/input", icon: LogIn, group: "Fundamentals" },
-  { title: "6. Output", path: "/docs/output", icon: LogOut, group: "Fundamentals" },
-  { title: "7. Operators", path: "/docs/operators", icon: Calculator, group: "Fundamentals" },
+  // FUNDAMENTALS
+  { title: "Variables", path: "/docs/variables", icon: Box, group: "FUNDAMENTALS" },
+  { title: "Data Types", path: "/docs/data-types", icon: Type, group: "FUNDAMENTALS" },
+  { title: "Input", path: "/docs/input", icon: LogIn, group: "FUNDAMENTALS" },
+  { title: "Output", path: "/docs/output", icon: LogOut, group: "FUNDAMENTALS" },
+  { title: "Operators", path: "/docs/operators", icon: Calculator, group: "FUNDAMENTALS" },
 
-  // Logic & Flow
-  { title: "8. If", path: "/docs/if", icon: GitCommit, group: "Logic & Flow" },
-  { title: "9. If-Else", path: "/docs/if-else", icon: GitBranch, group: "Logic & Flow" },
-  { title: "10. Loops Overview", path: "/docs/loops-overview", icon: RefreshCw, group: "Logic & Flow" },
-  { title: "11. LoopIn", path: "/docs/loopin", icon: Repeat, group: "Logic & Flow" },
-  { title: "12. LoopTill", path: "/docs/looptill", icon: RotateCcw, group: "Logic & Flow" },
-  { title: "13. Functions", path: "/docs/functions", icon: Code2, group: "Logic & Flow" },
+  // CONTROL FLOW
+  { title: "if", path: "/docs/if", icon: GitCommit, group: "CONTROL FLOW" },
+  { title: "if-else", path: "/docs/if-else", icon: GitBranch, group: "CONTROL FLOW" },
+  { title: "LoopIn", path: "/docs/loopin", icon: Repeat, group: "CONTROL FLOW" },
+  { title: "LoopTill", path: "/docs/looptill", icon: RotateCcw, group: "CONTROL FLOW" },
 
-  // Advanced
-  { title: "14. Error Handling", path: "/docs/error-handling", icon: AlertCircle, group: "Advanced" },
-  { title: "15. Flow Control", path: "/docs/flow-control", icon: Zap, group: "Advanced" },
-  { title: "16. CLI Reference", path: "/docs/cli", icon: Terminal, group: "Advanced" },
-
-  // Community
-  { title: "GitHub Repo", path: "https://github.com/AdityaKatyal8899/THE", icon: Github, group: "Community", external: true },
-  { title: "LinkedIn", path: "https://www.linkedin.com/in/aditya-katyal-1b6292296/", icon: Linkedin, group: "Community", external: true },
+  // ADVANCED
+  { title: "Functions", path: "/docs/functions", icon: Code2, group: "ADVANCED" },
+  { title: "Error Handling", path: "/docs/error-handling", icon: AlertCircle, group: "ADVANCED" },
+  { title: "Flow Control", path: "/docs/flow-control", icon: Zap, group: "ADVANCED" },
+  { title: "CLI", path: "/docs/cli", icon: Terminal, group: "ADVANCED" },
 ];
 
-const groups: DocGroup[] = ["Introduction", "Fundamentals", "Logic & Flow", "Advanced", "Community"];
+const groups: DocGroup[] = ["INTRODUCTION", "FUNDAMENTALS", "CONTROL FLOW", "ADVANCED"];
 
 export function DocsLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
-    "Introduction": true,
-    "Fundamentals": true,
-    "Logic & Flow": true,
-    "Advanced": true,
-    "Community": true,
+    "INTRODUCTION": true,
+    "FUNDAMENTALS": true,
+    "CONTROL FLOW": true,
+    "ADVANCED": true,
   });
   const location = useLocation();
 
@@ -70,7 +64,6 @@ export function DocsLayout() {
     setExpandedGroups(prev => ({ ...prev, [group]: !prev[group] }));
   };
 
-  // Close sidebar on mobile when navigating
   useEffect(() => {
     setIsSidebarOpen(false);
     window.scrollTo(0, 0);
@@ -82,8 +75,8 @@ export function DocsLayout() {
       
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Mobile Search/Toggle */}
-          <div className="flex lg:hidden items-center justify-between py-4 border-b border-white/5">
+          {/* Mobile Navigation Toggle */}
+          <div className="flex lg:hidden items-center justify-between py-6 border-b border-white/5">
             <button 
               onClick={() => setIsSidebarOpen(true)}
               className="flex items-center gap-2 text-sm text-gray-400 font-medium"
@@ -94,7 +87,7 @@ export function DocsLayout() {
             <div className="text-sm font-bold text-white tracking-widest uppercase">THE Docs</div>
           </div>
 
-          {/* Desktop Sidebar */}
+          {/* Desktop/Mobile Sidebar */}
           <aside className={`
             fixed inset-y-0 left-0 z-50 w-72 transform bg-[#030303] transition-transform duration-300 lg:static lg:block lg:w-64 lg:translate-x-0 lg:bg-transparent
             ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -107,9 +100,9 @@ export function DocsLayout() {
                 </button>
               </div>
 
-              <div className="space-y-8 pb-12">
+              <div className="space-y-10 pb-12">
                 {groups.map((group) => (
-                  <div key={group} className="space-y-2">
+                  <div key={group} className="space-y-3">
                     <button 
                       onClick={() => toggleGroup(group)}
                       className="flex w-full items-center justify-between px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-gray-500 transition-colors hover:text-white"
@@ -131,27 +124,7 @@ export function DocsLayout() {
                             .map((item) => {
                               const Icon = item.icon;
                               const isActive = location.pathname === item.path;
-                              const content = (
-                                <>
-                                  <Icon className={`size-4 transition-colors ${isActive ? "text-purple-400" : "text-gray-500 group-hover:text-gray-300"}`} />
-                                  <span>{item.title}</span>
-                                </>
-                              );
-
-                              if (item.external) {
-                                return (
-                                  <a
-                                    key={item.path}
-                                    href={item.path}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-gray-400/80 hover:bg-white/5 hover:text-white transition-all duration-300"
-                                  >
-                                    {content}
-                                  </a>
-                                );
-                              }
-
+                              
                               return (
                                 <Link
                                   key={item.path}
@@ -162,7 +135,8 @@ export function DocsLayout() {
                                       : "text-gray-400/80 hover:bg-white/5 hover:text-white"
                                   }`}
                                 >
-                                  {content}
+                                  <Icon className={`size-4 transition-colors ${isActive ? "text-purple-400" : "text-gray-500 group-hover:text-gray-300"}`} />
+                                  <span>{item.title}</span>
                                 </Link>
                               );
                             })}

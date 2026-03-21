@@ -1,76 +1,80 @@
-import { Rocket, ArrowRight } from "lucide-react";
+import { Rocket, ArrowRight, Download, Terminal } from "lucide-react";
 import { Link } from "react-router";
+import { motion } from "motion/react";
 import { CodeBlock } from "../../components/CodeBlock";
 
 export function GettingStarted() {
   return (
-    <div className="prose prose-invert max-w-none space-y-12">
-      <section className="space-y-4">
-        <div className="mb-4 inline-flex rounded-2xl bg-purple-500/10 p-4">
-          <Rocket className="size-8 text-purple-400" />
+    <div className="space-y-12 animate-in fade-in duration-700">
+      <header className="space-y-4">
+        <div className="flex items-center gap-3 text-purple-400">
+          <Rocket className="size-6" />
+          <span className="text-sm font-bold tracking-widest uppercase">Getting Started</span>
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">2. Getting Started</h1>
-        <p className="text-lg leading-relaxed text-gray-400 max-w-2xl">
-          Get up and running with THE Language in minutes. 
-          Follow these steps to install the runtime and run your first program.
+        <h1 className="text-4xl font-bold text-white md:text-5xl">Installation</h1>
+        <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
+          Getting THE Language up and running on your system is straightforward. 
+          Follow these steps to install the environment and write your first program.
         </p>
+      </header>
+
+      <section className="space-y-8">
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white tracking-tight">1. Download the Installer</h2>
+          <p className="text-gray-400 leading-relaxed">
+            Visit the <Link to="/download" className="text-purple-400 hover:text-purple-300 font-medium underline underline-offset-4">Download Page</Link> and get the latest version of `THE_Setup.exe` for Windows.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white tracking-tight">2. Installation</h2>
+          <p className="text-gray-400 leading-relaxed">
+            Run the executable and follow the setup wizard. The installer will automatically configure the necessary environment variables for your terminal.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-white tracking-tight">3. Verify Installation</h2>
+          <p className="text-gray-400 leading-relaxed">
+            Open your terminal (CMD or PowerShell) and type:
+          </p>
+          <CodeBlock 
+            language="bash"
+            code="the --version"
+          />
+        </div>
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-white">Installation</h2>
-        <div className="space-y-4">
-          <div className="flex items-start gap-4">
-            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-xs font-bold text-purple-400">1</div>
-            <p className="text-gray-400">Download the <code className="text-purple-300">THE_Setup.exe</code> installer from the official website.</p>
-          </div>
-          <div className="flex items-start gap-4">
-            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-xs font-bold text-purple-400">2</div>
-            <p className="text-gray-400">Run the installer and follow the on-screen prompts to configure your environment.</p>
-          </div>
-          <div className="flex items-start gap-4">
-            <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-purple-500/20 text-xs font-bold text-purple-400">3</div>
-            <p className="text-gray-400">Open your terminal and verify the installation by typing <code className="text-purple-300 font-mono">the --version</code>.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="space-y-6 pt-8 border-t border-white/5">
-        <h2 className="text-2xl font-semibold text-white">First Program</h2>
-        <p className="text-gray-400">Create a file named <code className="font-mono text-purple-300">hello.the</code> and add the following code:</p>
+        <h2 className="text-2xl font-bold text-white tracking-tight">Your First Program</h2>
+        <p className="text-gray-400 leading-relaxed">
+          Create a file named `hello.the` and add the following line:
+        </p>
         <CodeBlock 
           filename="hello.the"
-          code={`give("Hello, World!")`}
+          code={`give("Hello World")`}
         />
-        <div className="rounded-xl border border-white/5 bg-black/30 p-4">
-          <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
-          <code className="text-green-400 text-sm font-mono">Hello, World!</code>
-        </div>
-        <p className="text-gray-400 mt-4">Run your program using the command:</p>
+        <p className="text-gray-400 leading-relaxed">
+          Then execute it using:
+        </p>
         <CodeBlock 
-          filename="terminal"
-          code={`the hello.the`}
+          language="bash"
+          code="the hello.the"
         />
       </section>
 
-      <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-        <h3 className="mb-4 text-lg text-white">Next Steps</h3>
-        <div className="space-y-3">
-          <Link
-            to="/docs/variables"
-            className="flex items-center justify-between rounded-xl bg-white/5 p-4 transition-all hover:bg-white/10"
-          >
-            <span className="text-gray-300">Learn about Variables</span>
-            <ArrowRight className="size-5 text-purple-400" />
-          </Link>
-          <Link
-            to="/docs/data-types"
-            className="flex items-center justify-between rounded-xl bg-white/5 p-4 transition-all hover:bg-white/10"
-          >
-            <span className="text-gray-300">Explore Data Types</span>
-            <ArrowRight className="size-5 text-purple-400" />
-          </Link>
-        </div>
-      </div>
+      <footer className="pt-12 border-t border-white/5">
+        <Link 
+          to="/docs/variables"
+          className="group flex flex-col items-end gap-2 text-right"
+        >
+          <span className="text-sm text-gray-500 font-medium">Next Step</span>
+          <span className="flex items-center gap-2 text-xl font-bold text-white transition-colors group-hover:text-purple-400">
+            Variables
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+          </span>
+        </Link>
+      </footer>
     </div>
   );
 }

@@ -1,11 +1,30 @@
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { CodeBlock } from "../components/CodeBlock";
-import { Github, Download, ArrowRight, MessageSquare, Zap, Shield, Terminal, Sparkles, Globe, Linkedin, Mail } from "lucide-react";
+import { Github, Download, ArrowRight, MessageSquare, Zap, Shield, Terminal, Sparkles, Globe, Linkedin, Mail, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import { ScrollReveal } from "../components/ScrollReveal";
+
+const whyTHE = [
+  {
+    title: "Simpler than Python",
+    description: "Designed with a human-first approach, removing boilerplate and complex syntax hurdles.",
+  },
+  {
+    title: "Structured Error Handling",
+    description: "Gracefully manage failures with a robust and intuitive try/catch/throw/raise system.",
+  },
+  {
+    title: "Beginner-First Design",
+    description: "English-like keywords make code readable and easier to learn for first-time programmers.",
+  },
+  {
+    title: "CLI-Based Execution",
+    description: "Lightweight and powerful command-line tools for a modern developer workflow.",
+  },
+];
 
 const features = [
   {
@@ -21,11 +40,11 @@ const features = [
   {
     icon: Shield,
     title: "Built-in Error Handling",
-    description: "Comprehensive try/catch/throw/raise support for robust error management out of the box.",
+    description: "Comprehensive support for robust error management out of the box.",
   },
   {
     icon: Terminal,
-    title: "Simple CLI Usage",
+    title: "CLI Execution",
     description: "Run your code with a single command. Clean, straightforward command-line interface.",
   },
 ];
@@ -78,7 +97,7 @@ export function Home() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-24 md:py-32">
+      <section className="relative overflow-hidden px-6 py-24 md:py-40">
         <ScrollReveal>
           {/* Animated Background Orbs */}
           <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -121,7 +140,7 @@ export function Home() {
                     className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-purple-400 uppercase"
                   >
                     <Sparkles className="size-3.5" />
-                    Experience the Future
+                    Now in v0.1.0
                   </motion.div>
                   <h1 className="flex items-center gap-4 text-6xl font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
                     <img src="/icon.png" alt="THE" className="size-16 md:size-20 lg:size-24 object-contain" />
@@ -129,14 +148,14 @@ export function Home() {
                       THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Language</span>
                     </span>
                   </h1>
-                  <div className="min-h-[2.5rem] md:min-h-[3rem]">
-                    <p className="text-2xl font-medium text-gray-300 md:text-3xl">
+                  <p className="max-w-xl text-2xl font-medium text-gray-200 md:text-3xl leading-tight">
+                    THE is a beginner-friendly programming language with English-like syntax and built-in error handling.
+                  </p>
+                  <div className="min-h-[1.5rem]">
+                    <p className="text-lg font-medium text-purple-400">
                       {typedText}<span className="animate-pulse">|</span>
                     </p>
                   </div>
-                  <p className="max-w-xl text-lg text-gray-400 md:text-xl leading-relaxed">
-                    A beginner-friendly programming language with English-like syntax, built for speed and simplicity.
-                  </p>
                 </div>
 
                 <div className="flex flex-wrap gap-5">
@@ -151,15 +170,13 @@ export function Home() {
                     </Link>
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <a
-                      href="https://github.com/AdityaKatyal8899/THE"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/docs"
                       className="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-white/5 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/20"
                     >
-                      <Github className="size-5" />
-                      View on GitHub
-                    </a>
+                      <Terminal className="size-5" />
+                      View Documentation
+                    </Link>
                   </motion.div>
                 </div>
               </motion.div>
@@ -172,24 +189,51 @@ export function Home() {
                 className="relative lg:scale-110"
               >
                 <CodeBlock 
-                  filename="hello_world.the"
+                  filename="main.the"
                   code={`give("Hello World")
-                  
-try {
-    result = 5 / 0
-} catch(e) {
-    give("Error caught: " + e)
-}
 
-LoopIn range(0, 3) with i {
-    if i == 2 {
-        give("Loop is at " + i)
-    }
+try {
+    a = 5 / 0
+}
+catch(e) {
+    give(e)
 }`}
                 />
                 {/* Extra glow for hero code */}
                 <div className="absolute -inset-10 -z-10 rounded-3xl bg-purple-500/10 blur-3xl" />
               </motion.div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Why THE? Section */}
+      <section className="relative px-6 py-24 border-y border-white/5 bg-white/[0.01]">
+        <ScrollReveal>
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+                Why <span className="text-purple-400">THE</span>?
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-gray-400">
+                Built to be the first and last programming language you'll ever need to learn for logic.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {whyTHE.map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -5 }}
+                  className="rounded-3xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm transition-all hover:border-purple-500/20 hover:bg-white/[0.04]"
+                >
+                  <CheckCircle2 className="size-8 text-purple-400 mb-6" />
+                  <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </ScrollReveal>
@@ -207,12 +251,9 @@ LoopIn range(0, 3) with i {
               className="space-y-20"
             >
               <div className="text-center space-y-4">
-                <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
-                  Powering <span className="text-purple-400">Innovation</span>
+                <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+                  Product <span className="text-purple-400">Features</span>
                 </h2>
-                <p className="mx-auto max-w-2xl text-lg text-gray-400">
-                  A robust feature set designed to shorten the gap between idea and execution.
-                </p>
               </div>
 
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -229,10 +270,9 @@ LoopIn range(0, 3) with i {
                         <Icon className="size-6 text-purple-400" />
                       </div>
                       <h3 className="mb-3 text-xl font-semibold text-white">{feature.title}</h3>
-                      <p className="text-gray-400 leading-relaxed">
+                      <p className="text-gray-400 leading-relaxed text-sm">
                         {feature.description}
                       </p>
-                      <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-purple-500/0 to-purple-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
                     </motion.div>
                   );
                 })}
@@ -291,9 +331,6 @@ LoopIn range(0, 3) with i {
                 <h2 className="text-4xl font-bold tracking-tight text-white md:text-6xl">
                   Start Building <span className="text-purple-400">Today</span>.
                 </h2>
-                <p className="mx-auto max-w-xl text-xl text-gray-300">
-                  Join the growing community and build something amazing with THE Language.
-                </p>
                 <div className="flex flex-wrap justify-center gap-6">
                   <Link
                     to="/download"

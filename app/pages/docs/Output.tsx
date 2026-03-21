@@ -4,86 +4,74 @@ import { CodeBlock } from "../../components/CodeBlock";
 
 export function Output() {
   return (
-    <div className="prose prose-invert max-w-none space-y-12">
-      <section className="space-y-4">
-        <div className="mb-4 inline-flex rounded-2xl bg-purple-500/10 p-4">
-          <LogOut className="size-8 text-purple-400" />
+    <div className="animate-in fade-in duration-700 space-y-12">
+      <header className="space-y-4">
+        <div className="flex items-center gap-3 text-purple-400">
+          <LogOut className="size-6" />
+          <span className="text-sm font-bold tracking-widest uppercase">Fundamentals</span>
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">6. Output</h1>
-        <p className="text-lg leading-relaxed text-gray-400 max-w-2xl">
-          Use the <code className="text-purple-400 font-mono">give()</code> keyword to display 
-          information to the console. You can control the beginning and end of each output message.
+        <h1 className="text-4xl font-bold text-white md:text-5xl">Output</h1>
+        <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
+          The <code className="text-purple-400 font-mono">give()</code> keyword is used to display output to the console. 
+          It is highly customizable, allowing you to control prefixes and suffixes for every message.
         </p>
-      </section>
+      </header>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-white">Syntax</h2>
+        <h2 className="text-2xl font-bold text-white tracking-tight">Syntax</h2>
+        <p className="text-gray-400 font-normal">Print any value or variable to the screen.</p>
         <CodeBlock 
-          filename="syntax"
+          filename="syntax.the"
           code={`give(value, start="prefix", end="suffix")`}
         />
       </section>
 
       <section className="space-y-10">
-        <h2 className="text-2xl font-semibold text-white">Parameters</h2>
-        
-        <div className="space-y-8">
-          <div className="space-y-3">
-            <h3 className="text-xl font-medium text-purple-300">start</h3>
-            <p className="text-gray-400 leading-relaxed">
-              The <code className="text-purple-300 font-mono">start</code> parameter allows you to specify a string that will be 
-              prepended to your output message. This is helpful for adding consistent prefixes like 
-              timestamps, labels, or decorative symbols to your logs.
+        <h2 className="text-2xl font-bold text-white tracking-tight">Parameters</h2>
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="space-y-3 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+            <h3 className="text-lg font-bold text-purple-300">start</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">
+              Adds a string to the beginning of the output. Default is empty.
             </p>
           </div>
-
-          <div className="space-y-3">
-            <h3 className="text-xl font-medium text-purple-300">end</h3>
-            <p className="text-gray-400 leading-relaxed">
-              The <code className="text-purple-300 font-mono">end</code> parameter defines what character or string appears at the 
-              very end of your output. By default, <code className="text-purple-300 font-mono">give()</code> adds a newline, 
-              but you can change this to a space, a comma, or any custom text to keep multiple outputs on the same line.
+          <div className="space-y-3 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+            <h3 className="text-lg font-bold text-purple-300">end</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">
+              Adds a string to the end of the output. Default is a newline (<code className="text-purple-300 font-mono">\n</code>).
             </p>
           </div>
         </div>
       </section>
 
-      <section className="space-y-6 pt-4 border-t border-white/5">
-        <h2 className="text-2xl font-semibold text-white">Example</h2>
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold text-white tracking-tight">Example</h2>
         <CodeBlock 
-          filename="output_params.the"
-          code={`#// Standard output //#
-give("Hello")
-
-#// With custom start and end //#
-give("Success", start="[LOG] ", end="!!!\\n")
-
-#// Multiple gives on the same line //#
-give("Processing", end="... ")
-give("Done", start="")`}
+          filename="output.the"
+          code={`#// Standard output //#\ngive("Hello")\n\n#// Custom parameters //#\ngive("Success", start="[LOG] ", end="!!!\\n")\n\n#// Continuous output //#\ngive("Working", end="... ")\ngive("Done", start="")`}
         />
-        <div className="rounded-xl border border-white/5 bg-black/30 p-4 font-mono text-sm leading-relaxed">
-          <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2 font-sans">Expected Output</div>
-          <div className="text-green-400">Hello</div>
-          <div className="text-green-400">[LOG] Success!!!</div>
-          <div className="text-green-400">Processing... Done</div>
+        <div className="rounded-xl border border-white/5 bg-black/30 p-4">
+          <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
+          <div className="font-mono text-sm space-y-1">
+            <div className="text-green-400 italic">Hello</div>
+            <div className="text-green-400 italic">[LOG] Success!!!</div>
+            <div className="text-green-400 italic">Working... Done</div>
+          </div>
         </div>
       </section>
 
-      <div className="pt-12 border-t border-white/5">
+      <footer className="pt-12 border-t border-white/5">
         <Link 
-          to="/docs/operators" 
-          className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-8 transition-all hover:bg-white/10"
+          to="/docs/operators"
+          className="group flex flex-col items-end gap-2 text-right"
         >
-          <div>
-            <div className="text-sm text-gray-500 mb-1">Next Step</div>
-            <div className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">
-              Operators →
-            </div>
-          </div>
-          <ArrowRight className="size-6 text-gray-500 group-hover:text-purple-400 transition-transform group-hover:translate-x-2" />
+          <span className="text-sm text-gray-500 font-medium">Next Step</span>
+          <span className="flex items-center gap-2 text-xl font-bold text-white transition-colors group-hover:text-purple-400">
+            Operators
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+          </span>
         </Link>
-      </div>
+      </footer>
     </div>
   );
 }

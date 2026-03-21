@@ -4,68 +4,63 @@ import { CodeBlock } from "../../components/CodeBlock";
 
 export function Variables() {
   return (
-    <div className="prose prose-invert max-w-none space-y-12">
-      <section className="space-y-4">
-        <div className="mb-4 inline-flex rounded-2xl bg-purple-500/10 p-4">
-          <Box className="size-8 text-purple-400" />
+    <div className="animate-in fade-in duration-700 space-y-12">
+      <header className="space-y-4">
+        <div className="flex items-center gap-3 text-purple-400">
+          <Box className="size-6" />
+          <span className="text-sm font-bold tracking-widest uppercase">Fundamentals</span>
         </div>
-        <h1 className="text-3xl font-bold text-white tracking-tight">3. Variables</h1>
-        <p className="text-lg leading-relaxed text-gray-400 max-w-2xl">
-          Variables allow you to store and manage data dynamically. 
-          In THE, variable names are case-sensitive and can hold any data type.
+        <h1 className="text-4xl font-bold text-white md:text-5xl">Variables</h1>
+        <p className="text-xl text-gray-400 leading-relaxed max-w-2xl">
+          Variables are named containers used to store data values in memory. In THE, variables are dynamic and 
+          can change their type during execution if reassigned.
         </p>
+      </header>
+
+      <section className="space-y-6">
+        <h2 className="text-2xl font-bold text-white tracking-tight">Syntax</h2>
+        <p className="text-gray-400">Assign a value using the assignment operator.</p>
+        <CodeBlock 
+          filename="syntax.the"
+          code={`variable_name = value`}
+        />
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-white">Syntax</h2>
-        <p className="text-gray-400">Use the <code className="text-purple-400 font-mono">=</code> operator to assign a value to a name.</p>
+        <h2 className="text-2xl font-bold text-white tracking-tight">Example</h2>
         <CodeBlock 
           filename="variables.the"
-          code={`a = 5\nname = "THE"\ngive(a)\ngive(name)`}
+          code={`score = 100
+player = "Aditya"
+give(player + " has " + score + " points")`}
         />
         <div className="rounded-xl border border-white/5 bg-black/30 p-4">
           <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
-          <pre className="text-green-400 font-mono text-sm m-0">5\nTHE</pre>
+          <code className="text-green-400 font-mono">Aditya has 100 points</code>
         </div>
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-white">Examples</h2>
-        <CodeBlock 
-          filename="variables.the"
-          code={`age = 25
-name = "THE Language"`}
-        />
-        <CodeBlock 
-          filename="dynamic.the"
-          code={`x = 10
-x = "Now I am a string"`}
-        />
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="text-2xl font-semibold text-white">Notes</h2>
-        <ul className="text-gray-400 list-disc pl-5 space-y-2">
+        <h2 className="text-2xl font-bold text-white tracking-tight">Notes</h2>
+        <ul className="text-gray-400 list-disc pl-5 space-y-3">
           <li>Variable names must start with a letter or underscore.</li>
           <li>They cannot contain spaces or special characters except underscores.</li>
-          <li>Keywords like <code className="text-purple-400">if</code> or <code className="text-purple-400">func</code> cannot be used as names.</li>
+          <li>Names are case-sensitive (e.g., <code className="text-purple-400">score</code> and <code className="text-purple-400">Score</code> are different).</li>
         </ul>
       </section>
 
-      <div className="pt-12 border-t border-white/5">
+      <footer className="pt-12 border-t border-white/5">
         <Link 
-          to="/docs/data-types" 
-          className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-8 transition-all hover:bg-white/10"
+          to="/docs/data-types"
+          className="group flex flex-col items-end gap-2 text-right"
         >
-          <div>
-            <div className="text-sm text-gray-500 mb-1">Next Step</div>
-            <div className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors">
-              Data Types →
-            </div>
-          </div>
-          <ArrowRight className="size-6 text-gray-500 group-hover:text-purple-400 transition-transform group-hover:translate-x-2" />
+          <span className="text-sm text-gray-500 font-medium">Next Step</span>
+          <span className="flex items-center gap-2 text-xl font-bold text-white transition-colors group-hover:text-purple-400">
+            Data Types
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+          </span>
         </Link>
-      </div>
+      </footer>
     </div>
   );
 }
