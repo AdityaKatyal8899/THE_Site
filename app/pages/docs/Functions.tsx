@@ -21,7 +21,7 @@ export function Functions() {
         <h2 className="text-2xl font-bold text-white tracking-tight">Syntax</h2>
         <div className="space-y-4">
           <p className="text-gray-400">THE supports both <code className="text-purple-400 font-mono">func</code> and the full 
-          <code className="text-purple-400 font-mono">function</code> keyword.</p>
+          <code className="text-purple-400 font-mono"> function</code> keyword.</p>
           <CodeBlock 
             filename="syntax.the"
             code={`func name(parameter1, parameter2) {\n    #// Code to execute //#\n    return result\n}`}
