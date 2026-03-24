@@ -36,9 +36,9 @@ export function Input() {
           <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Simulated Session</div>
           <div className="font-mono text-sm">
             <span className="text-gray-400">What is your name? </span>
-            <span className="text-purple-400">Aditya</span>
+            <span className="text-purple-400">Bat Man</span>
             <br />
-            <span className="text-green-400">Hello, Aditya</span>
+            <span className="text-green-400">Hello, Bat Man</span>
           </div>
         </div>
       </section>

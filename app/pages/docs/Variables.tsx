@@ -31,12 +31,12 @@ export function Variables() {
         <CodeBlock 
           filename="variables.the"
           code={`score = 100
-player = "Aditya"
+player = "Spider Man"
 give(player + " has " + score + " points")`}
         />
         <div className="rounded-xl border border-white/5 bg-black/30 p-4">
           <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Expected Output</div>
-          <code className="text-green-400 font-mono">Aditya has 100 points</code>
+          <code className="text-green-400 font-mono">Spider Man has 100 points</code>
         </div>
       </section>
 

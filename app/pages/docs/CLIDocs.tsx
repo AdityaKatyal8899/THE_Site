@@ -35,7 +35,7 @@ export function CLIDocs() {
         />
         <div className="rounded-xl border border-white/5 bg-black/30 p-4">
           <div className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Output</div>
-          <code className="text-green-400 font-mono">THE Language v0.1.0</code>
+          <code className="text-green-400 font-mono">THE Language v0.2.0</code>
         </div>
       </section>
 

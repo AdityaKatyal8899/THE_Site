@@ -140,15 +140,15 @@ export function Home() {
                     className="inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-purple-400 uppercase"
                   >
                     <Sparkles className="size-3.5" />
-                    Now in v0.1.0
+                    Now in v0.2.0
                   </motion.div>
-                  <h1 className="flex items-center gap-4 text-6xl font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
-                    <img src="/icon.png" alt="THE" className="size-16 md:size-20 lg:size-24 object-contain" />
+                  <h1 className="flex items-center gap-4 text-5xl font-bold tracking-tight text-white md:text-7xl">
+                    <img src="/icon.png" alt="THE" className="size-12 md:size-20 object-contain" />
                     <span>
                       THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Language</span>
                     </span>
                   </h1>
-                  <p className="max-w-xl text-2xl font-medium text-gray-200 md:text-3xl leading-tight">
+                  <p className="max-w-xl text-xl font-medium text-gray-200 md:text-2xl leading-relaxed">
                     THE is a beginner-friendly programming language with English-like syntax and built-in error handling.
                   </p>
                   <div className="min-h-[1.5rem]">
